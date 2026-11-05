@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Skill } from "@/types";
-import { initialSkills } from "@/lib/seed-data";
+import { initialSkills } from "@/data/portfolio-data";
 import {
   Code2,
   Palette,

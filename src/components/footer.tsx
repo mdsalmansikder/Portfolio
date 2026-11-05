@@ -21,7 +21,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
-              Turning Ideas Into Digital Experiences. Built with Next.js App Router, TypeScript, MongoDB, and Better Auth.
+              Turning Ideas Into Digital Experiences. Built with Next.js App Router, TypeScript, and Tailwind CSS.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a

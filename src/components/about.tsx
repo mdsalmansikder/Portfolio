@@ -1,6 +1,6 @@
 "use client";
 
-import { initialProfile } from "@/lib/seed-data";
+import { initialProfile } from "@/data/portfolio-data";
 import {
   GraduationCap,
   Compass,
@@ -127,4 +127,3 @@ export function About() {
     </section>
   );
 }
-

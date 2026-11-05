@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Project } from "@/types";
-import { initialProjects } from "@/lib/seed-data";
+import { initialProjects } from "@/data/portfolio-data";
 import {
   ExternalLink,
   Layers,
@@ -87,7 +87,7 @@ export function Projects({
 
             return (
               <div
-                key={project.id || project.slug || idx}
+                key={project.slug || idx}
                 className="group relative rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-[#0c1427]/85 backdrop-blur-xl overflow-hidden hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col justify-between"
               >
                 {/* Top preview illustration banner */}

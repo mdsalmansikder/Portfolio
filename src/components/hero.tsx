@@ -71,7 +71,7 @@ export function Hero() {
               <span className="font-semibold text-slate-900 dark:text-slate-200">
                 MongoDB
               </span>
-              , backed by secure authentication with Better Auth.
+              , with a focus on secure, reliable applications.
             </p>
 
             {/* Location & Contact snippet */}

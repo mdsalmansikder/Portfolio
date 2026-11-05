@@ -1,6 +1,6 @@
 "use client";
 
-import { initialEducation } from "@/lib/seed-data";
+import { initialEducation } from "@/data/portfolio-data";
 import {
   GraduationCap,
   Calendar,
@@ -91,4 +91,3 @@ export function Education() {
     </section>
   );
 }
-

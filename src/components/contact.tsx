@@ -8,7 +8,6 @@ import {
   Send,
   CheckCircle,
   AlertCircle,
-  Loader2,
   Sparkles,
   MessageSquare,
   Clock,
@@ -23,7 +22,6 @@ export function Contact() {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{
     type: "success" | "error" | null;
     message: string;
@@ -39,9 +37,8 @@ export function Contact() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setStatus({ type: null, message: "" });
 
     const emailBody = [
@@ -63,41 +60,10 @@ export function Contact() {
     }).toString();
     setGmailDraftUrl(gmailUrl.toString());
     window.open(gmailUrl.toString(), "_blank", "noopener,noreferrer");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || "Failed to send message");
-      }
-
-      setStatus({
-        type: "success",
-        message:
-          "Your message has been saved. Review the pre-filled Gmail draft and click Send to deliver it.",
-      });
-
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
-    } catch (err: any) {
-      setStatus({
-        type: "error",
-        message: err.message || "An unexpected error occurred. Please try again.",
-      });
-    } finally {
-      setLoading(false);
-    }
+    setStatus({
+      type: "success",
+      message: "Your Gmail draft is ready. Click Send in Gmail to deliver your message.",
+    });
   };
 
   return (
@@ -339,20 +305,10 @@ export function Contact() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={loading}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {loading ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      Sending Message...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      Send Message
-                    </>
-                  )}
+                  <Send className="w-4 h-4" />
+                  Send Message
                 </button>
               </form>
             </div>

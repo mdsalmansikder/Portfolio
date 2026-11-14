@@ -20,12 +20,81 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 overflow-hidden bg-grid-pattern"
+      className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 overflow-hidden isolate"
     >
-      {/* Background Radial Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] bg-gradient-to-tr from-blue-600/20 via-cyan-500/15 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute top-1/2 right-10 w-[350px] h-[350px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-10 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* Dynamic Ambient Background Canvas, Fire Embers & Matrix Pixels (Strictly Hero Only) */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden select-none">
+        {/* Infinite Drifting Grid Lines */}
+        <div
+          className="absolute inset-0 bg-grid-pattern animate-grid-drift opacity-85 dark:opacity-90"
+          style={{
+            maskImage:
+              "radial-gradient(ellipse 85% 70% at 50% 35%, black 45%, transparent 95%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 85% 70% at 50% 35%, black 45%, transparent 95%)",
+          }}
+        />
+
+        {/* Horizontal Laser Scanning Line (Sweeps top to bottom across grid) */}
+        <div className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 dark:via-cyan-300 to-transparent blur-[1px] animate-grid-scan-h opacity-75 shadow-[0_0_12px_#22d3ee]" />
+
+        {/* Vertical Laser Scanning Line (Sweeps left to right across grid) */}
+        <div className="absolute top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-blue-500 dark:via-blue-400 to-transparent blur-[1px] animate-grid-scan-v opacity-65 shadow-[0_0_12px_#3b82f6]" />
+
+        {/* Floating Twinkling Pixel Blocks on the Grid */}
+        <div className="absolute top-[14%] left-[10%] w-9 h-9 border border-cyan-400/30 bg-cyan-500/10 dark:bg-cyan-400/15 backdrop-blur-xs rounded-sm animate-pixel-twinkle shadow-[0_0_10px_rgba(34,211,238,0.25)]" />
+        <div className="absolute top-[22%] right-[16%] w-9 h-9 border border-blue-500/35 bg-blue-600/10 dark:bg-blue-500/15 backdrop-blur-xs rounded-sm animate-pixel-twinkle-fast shadow-[0_0_10px_rgba(59,130,246,0.25)]" />
+        <div className="absolute top-[48%] left-[6%] w-9 h-9 border border-cyan-400/30 bg-cyan-500/10 rounded-sm animate-pixel-twinkle-slow shadow-[0_0_10px_rgba(34,211,238,0.2)]" />
+        <div className="absolute top-[64%] right-[12%] w-9 h-9 border border-indigo-400/30 bg-indigo-500/10 rounded-sm animate-pixel-twinkle shadow-[0_0_10px_rgba(99,102,241,0.2)]" />
+        <div className="absolute top-[75%] left-[28%] w-9 h-9 border border-cyan-400/30 bg-cyan-500/10 rounded-sm animate-pixel-twinkle-fast" />
+        <div className="absolute top-[32%] right-[38%] w-9 h-9 border border-blue-400/25 bg-blue-500/10 rounded-sm animate-pixel-twinkle-slow hidden sm:block" />
+        <div className="absolute top-[82%] right-[32%] w-9 h-9 border border-cyan-300/30 bg-cyan-400/10 rounded-sm animate-pixel-twinkle hidden sm:block" />
+
+        {/* Twinkling Pixel Intersection Nodes (+) */}
+        <div className="absolute top-[28%] left-[24%] flex items-center justify-center animate-pixel-twinkle">
+          <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+          <span className="absolute w-5 h-5 rounded-full bg-cyan-400/30 animate-ping" />
+        </div>
+        <div className="absolute top-[38%] right-[22%] flex items-center justify-center animate-pixel-twinkle-fast">
+          <span className="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_8px_#60a5fa]" />
+          <span className="absolute w-4 h-4 rounded-full bg-blue-400/30 animate-ping" />
+        </div>
+        <div className="absolute top-[70%] left-[18%] flex items-center justify-center animate-pixel-twinkle-slow">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
+          <span className="absolute w-4 h-4 rounded-full bg-emerald-400/30 animate-ping" />
+        </div>
+        <div className="absolute top-[18%] right-[42%] flex items-center justify-center animate-pixel-twinkle hidden md:flex">
+          <span className="w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_8px_#67e8f9]" />
+        </div>
+        <div className="absolute top-[85%] right-[20%] flex items-center justify-center animate-pixel-twinkle-fast">
+          <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+        </div>
+
+        {/* Dynamic Glowing Ambient Aurora Orbs */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] h-[540px] bg-gradient-to-tr from-blue-600/25 via-cyan-500/20 to-transparent rounded-full blur-3xl animate-aurora-sweep" />
+        <div className="absolute top-1/2 right-10 w-[380px] h-[380px] bg-blue-500/15 rounded-full blur-3xl animate-aurora-sweep [animation-delay:4s]" />
+        <div className="absolute bottom-10 left-10 w-[340px] h-[340px] bg-cyan-500/15 rounded-full blur-3xl animate-aurora-sweep [animation-delay:7s]" />
+
+        {/* Dynamic Shooting Fire Streaks (Laser Fire Shots) */}
+        <div className="absolute top-0 left-0 w-52 sm:w-80 h-[2.5px] bg-gradient-to-r from-transparent via-cyan-400 to-white shadow-[0_0_18px_#22d3ee,0_0_30px_#0066ff] animate-fire-shot-1 pointer-events-none rounded-full" />
+        <div className="absolute top-1/4 left-0 w-64 sm:w-96 h-[3px] bg-gradient-to-r from-transparent via-blue-400 to-cyan-200 shadow-[0_0_20px_#38bdf8,0_0_35px_#0055ff] animate-fire-shot-2 pointer-events-none rounded-full" />
+        <div className="absolute top-12 left-1/4 w-48 sm:w-72 h-[2.5px] bg-gradient-to-r from-transparent via-cyan-300 to-white shadow-[0_0_16px_#67e8f9,0_0_28px_#2563eb] animate-fire-shot-3 pointer-events-none rounded-full" />
+
+        {/* Central Energy Shockwave Flare Burst */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full border border-cyan-400/30 bg-gradient-to-r from-blue-600/10 via-cyan-400/10 to-transparent animate-shockwave-flare pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full border border-blue-500/25 animate-shockwave-flare [animation-delay:3.2s] pointer-events-none" />
+
+        {/* Rising Fire Embers / Floating Cyber Sparks */}
+        <div className="absolute bottom-6 left-[12%] w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee,0_0_20px_#06b6d4] animate-ember-1 pointer-events-none" />
+        <div className="absolute bottom-12 left-[32%] w-2.5 h-2.5 rounded-full bg-blue-400 shadow-[0_0_12px_#60a5fa,0_0_24px_#3b82f6] animate-ember-2 pointer-events-none" />
+        <div className="absolute bottom-4 left-[52%] w-1.5 h-1.5 rounded-full bg-cyan-300 shadow-[0_0_8px_#67e8f9] animate-ember-3 pointer-events-none" />
+        <div className="absolute bottom-16 right-[28%] w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_12px_#fbbf24,0_0_22px_#f59e0b] animate-ember-1 [animation-delay:2.5s] pointer-events-none" />
+        <div className="absolute bottom-8 right-[14%] w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#22d3ee] animate-ember-2 [animation-delay:1.2s] pointer-events-none" />
+        <div className="absolute bottom-14 right-[45%] w-1.5 h-1.5 rounded-full bg-blue-300 shadow-[0_0_10px_#93c5fd] animate-ember-3 [animation-delay:3.2s] pointer-events-none" />
+
+        {/* Natural Bottom Gradient Dissolve (Prevents visual bleed or overflow into About section) */}
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-50 dark:from-[#060b18] via-slate-50/75 dark:via-[#060b18]/75 to-transparent pointer-events-none" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -162,19 +231,37 @@ export function Hero() {
                   </div>
                 </div>
 
-                {/* Profile Avatar / Representative Photo Block */}
-                <div className="relative mx-auto w-36 h-36 sm:w-40 sm:h-40 rounded-2xl p-1 bg-gradient-to-tr from-blue-600 via-cyan-400 to-blue-400 shadow-xl shadow-blue-500/20 group">
-                  <div className="w-full h-full rounded-2xl bg-gradient-to-b from-slate-900 to-[#070d1d] flex flex-col items-center justify-center text-white relative overflow-hidden">
-                    <Image
-                      src="/riyad-profile.jpg"
-                      alt="Md. Riyad"
-                      width={96}
-                      height={96}
-                      className="mb-1 h-20 w-20 rounded-full border border-blue-400/40 object-cover object-[center_30%] shadow-inner"
-                    />
-                    <span className="text-sm font-semibold tracking-wide">Md. Riyad</span>
-                    <span className="text-[11px] text-cyan-400 font-mono">@mdsalmansikder</span>
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent pointer-events-none" />
+                {/* Profile Avatar / Representative Photo Block with Running Pin Beam */}
+                <div className="relative mx-auto w-40 h-44 sm:w-44 sm:h-48 rounded-3xl p-[2px] overflow-hidden shadow-2xl shadow-blue-500/25 group transition-all duration-300 hover:shadow-cyan-500/35">
+                  {/* Running Pin / Laser Light Beam */}
+                  <div className="absolute -inset-[100%] animate-border-beam bg-[conic-gradient(from_0deg,transparent_0_300deg,#0055ff_325deg,#00f0ff_355deg,#ffffff_360deg)] pointer-events-none" />
+                  <div className="absolute -inset-[100%] animate-border-beam bg-[conic-gradient(from_0deg,transparent_0_310deg,#0066ff_340deg,#00f0ff_360deg)] blur-sm pointer-events-none opacity-80" />
+
+                  {/* Inner Card Background */}
+                  <div className="relative z-10 w-full h-full rounded-[22px] bg-gradient-to-b from-slate-900 via-[#070d1d] to-[#0c1427] flex flex-col items-center justify-center text-white p-3 overflow-hidden border border-white/5">
+                    {/* Photo with inner running beam ring */}
+                    <div className="relative w-24 h-24 sm:w-26 sm:h-26 rounded-full p-[2px] overflow-hidden shadow-xl mb-2 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                      <div className="absolute -inset-[100%] animate-border-beam-fast bg-[conic-gradient(from_0deg,transparent_0_290deg,#0066ff_330deg,#00f0ff_355deg,#ffffff_360deg)] pointer-events-none" />
+                      <div className="relative z-10 w-full h-full rounded-full overflow-hidden bg-slate-950 border border-cyan-400/40">
+                        <Image
+                          src="/riyad-profile.jpg"
+                          alt="Md. Riyad"
+                          width={104}
+                          height={104}
+                          className="w-full h-full object-cover object-[center_30%]"
+                          priority
+                        />
+                      </div>
+                      <span className="absolute bottom-0 right-0 z-20 w-3 h-3 rounded-full bg-emerald-500 border-2 border-slate-950 shadow-[0_0_8px_#10b981]">
+                        <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-75" />
+                      </span>
+                    </div>
+
+                    <div className="text-center space-y-0.5">
+                      <span className="text-sm font-bold tracking-wide text-white drop-shadow-sm block">Md. Riyad</span>
+                      <span className="text-[11px] text-cyan-400 font-mono font-medium block">@mdsalmansikder</span>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-600/15 via-transparent to-transparent pointer-events-none" />
                   </div>
                 </div>
 

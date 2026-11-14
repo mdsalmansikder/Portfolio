@@ -3,42 +3,109 @@
 import { useState } from "react";
 import { Skill } from "@/types";
 import { initialSkills } from "@/data/portfolio-data";
+import { Sparkles, Check, Code2 } from "lucide-react";
 import {
-  Code2,
-  Palette,
-  Paintbrush,
-  FileCode,
-  FileCode2,
-  Atom,
-  Layers,
-  Server,
-  Cpu,
-  Database,
-  ShieldCheck,
-  GitBranch,
-  Terminal,
-  Sparkles,
-  Check,
-} from "lucide-react";
-import { GithubIcon } from "@/components/icons";
+  HtmlIcon,
+  CssIcon,
+  TailwindIcon,
+  JavaScriptIcon,
+  TypeScriptIcon,
+  ReactIcon,
+  NextjsIcon,
+  NodejsIcon,
+  ExpressIcon,
+  MongodbIcon,
+  BetterAuthIcon,
+  GitIcon,
+  GithubIcon,
+  VsCodeIcon,
+} from "@/components/icons";
 
-// Map string icon names to Lucide icon components
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Code2,
-  Palette,
-  Paintbrush,
-  FileCode,
-  FileCode2,
-  Atom,
-  Layers,
-  Server,
-  Cpu,
-  Database,
-  ShieldCheck,
-  GitBranch,
-  Github: GithubIcon,
-  Terminal,
+// Map each technology / language to its brand SVG icon
+const brandIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  // HTML
+  html: HtmlIcon,
+  html5: HtmlIcon,
+  code2: HtmlIcon,
+
+  // CSS
+  css: CssIcon,
+  css3: CssIcon,
+  palette: CssIcon,
+
+  // Tailwind CSS
+  tailwind: TailwindIcon,
+  tailwindcss: TailwindIcon,
+  paintbrush: TailwindIcon,
+
+  // JavaScript
+  javascript: JavaScriptIcon,
+  js: JavaScriptIcon,
+  filecode: JavaScriptIcon,
+
+  // TypeScript
+  typescript: TypeScriptIcon,
+  ts: TypeScriptIcon,
+  filecode2: TypeScriptIcon,
+
+  // React
+  react: ReactIcon,
+  reactjs: ReactIcon,
+  atom: ReactIcon,
+
+  // Next.js
+  nextjs: NextjsIcon,
+  next: NextjsIcon,
+  layers: NextjsIcon,
+
+  // Node.js
+  nodejs: NodejsIcon,
+  node: NodejsIcon,
+  server: NodejsIcon,
+
+  // Express.js
+  express: ExpressIcon,
+  expressjs: ExpressIcon,
+  cpu: ExpressIcon,
+
+  // MongoDB
+  mongodb: MongodbIcon,
+  database: MongodbIcon,
+
+  // Better Auth
+  betterauth: BetterAuthIcon,
+  shieldcheck: BetterAuthIcon,
+
+  // Git
+  git: GitIcon,
+  gitbranch: GitIcon,
+
+  // GitHub
+  github: GithubIcon,
+
+  // VS Code
+  vscode: VsCodeIcon,
+  terminal: VsCodeIcon,
 };
+
+function getSkillIcon(skill: Skill): React.ComponentType<{ className?: string }> {
+  // 1. Try matching by icon string
+  if (skill.icon) {
+    const iconKey = skill.icon.toLowerCase().replace(/[^a-z0-9]/g, "");
+    if (brandIconMap[iconKey]) {
+      return brandIconMap[iconKey];
+    }
+  }
+
+  // 2. Try matching by skill name
+  const nameKey = skill.name.toLowerCase().replace(/[^a-z0-9]/g, "");
+  if (brandIconMap[nameKey]) {
+    return brandIconMap[nameKey];
+  }
+
+  // 3. Fallback
+  return Code2;
+}
 
 const categories = [
   "All",
@@ -94,16 +161,16 @@ export function Skills({ skills = initialSkills }: { skills?: Skill[] }) {
         {/* Skills Cards Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
           {filteredSkills.map((skill, index) => {
-            const IconComponent = (skill.icon && iconMap[skill.icon]) || Code2;
+            const IconComponent = getSkillIcon(skill);
 
             return (
               <div
                 key={skill.name + index}
                 className="group relative rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#0c1427]/80 backdrop-blur-xl p-5 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-200 flex flex-col items-center text-center justify-between"
               >
-                {/* Glow accent */}
-                <div className="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                  <IconComponent className="w-6 h-6" />
+                {/* Brand Icon Container */}
+                <div className="w-14 h-14 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200/60 dark:border-slate-800/80 flex items-center justify-center mb-3 shadow-inner group-hover:scale-110 group-hover:border-blue-500/40 group-hover:shadow-md group-hover:shadow-blue-500/10 transition-all duration-300 p-2.5">
+                  <IconComponent className="w-8 h-8 transition-transform group-hover:scale-105" />
                 </div>
 
                 <div className="space-y-1">

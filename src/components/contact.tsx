@@ -6,10 +6,10 @@ import {
   Phone,
   MapPin,
   Send,
-  CheckCircle,
+  CheckCircle2,
   AlertCircle,
+  Loader2,
   Sparkles,
-  MessageSquare,
   Clock,
 } from "lucide-react";
 
@@ -22,11 +22,11 @@ export function Contact() {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
-  const [gmailDraftUrl, setGmailDraftUrl] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -37,64 +37,85 @@ export function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     setStatus({ type: null, message: "" });
 
-    const emailBody = [
-      `Name: ${formData.name}`,
-      `Email: ${formData.email}`,
-      formData.phone ? `Phone: ${formData.phone}` : "",
-      "",
-      formData.message,
-    ]
-      .filter(Boolean)
-      .join("\n");
-    const gmailUrl = new URL("https://mail.google.com/mail/");
-    gmailUrl.search = new URLSearchParams({
-      view: "cm",
-      fs: "1",
-      to: "mdsalmansikder0@gmail.com",
-      su: formData.subject,
-      body: emailBody,
-    }).toString();
-    setGmailDraftUrl(gmailUrl.toString());
-    window.open(gmailUrl.toString(), "_blank", "noopener,noreferrer");
-    setStatus({
-      type: "success",
-      message: "Your Gmail draft is ready. Click Send in Gmail to deliver your message.",
-    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(
+          data.error || "Failed to send message. Please try again."
+        );
+      }
+
+      setStatus({
+        type: "success",
+        message:
+          data.message ||
+          "Thank you! Your message has been sent directly to Md. Riyad. I will reply to your email shortly.",
+      });
+
+      // Clear form inputs
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (err: any) {
+      setStatus({
+        type: "error",
+        message:
+          err.message ||
+          "Could not send message. Please try again or reach out directly at mdsalmansikder0@gmail.com",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <section id="contact" className="scroll-mt-24 py-24 relative overflow-hidden">
-      {/* Glow backgrounds */}
+      {/* Ambient glow backgrounds */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="flex flex-col items-center text-center mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold tracking-wider uppercase bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-wider uppercase bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 backdrop-blur-md">
             <Sparkles className="w-3.5 h-3.5" />
             Get In Touch
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Let's Build Something <span className="text-gradient">Extraordinary</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            Let&apos;s Build Something <span className="text-gradient">Extraordinary</span>
           </h2>
           <p className="max-w-2xl text-slate-600 dark:text-slate-400 text-base sm:text-lg">
-            Have a project idea, opportunity, or question? Send me a message and I'll get back to you within 24 hours.
+            Have a project idea, opportunity, or question? Send a message directly and I will get back to you within 24 hours.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Direct Contact Info Cards */}
           <div className="lg:col-span-5 space-y-5">
-            <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-[#0c1427]/85 backdrop-blur-xl p-8 space-y-6">
+            <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-[#0c1427]/85 backdrop-blur-xl p-8 space-y-6 shadow-xl shadow-blue-900/5">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                 Contact Information
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                Feel free to contact me via email, phone, or WhatsApp. I am always open to discussing new opportunities, frontend & full-stack projects, or developer collaborations.
+                Feel free to contact me via email, phone, or WhatsApp. I am always open to discussing new opportunities, frontend &amp; full-stack projects, or developer collaborations.
               </p>
 
               <div className="space-y-4 pt-2">
@@ -108,7 +129,7 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="text-xs font-mono uppercase text-slate-500 dark:text-slate-400">
-                      Email
+                      Email Address
                     </p>
                     <p className="text-sm font-semibold text-slate-900 dark:text-white">
                       mdsalmansikder0@gmail.com
@@ -126,7 +147,7 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="text-xs font-mono uppercase text-slate-500 dark:text-slate-400">
-                      Phone & WhatsApp
+                      Phone &amp; WhatsApp
                     </p>
                     <p className="text-sm font-semibold text-slate-900 dark:text-white">
                       01719280400
@@ -165,10 +186,10 @@ export function Contact() {
                 Send a Direct Message
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 mb-8">
-                Fill in the details below and I will get back to you promptly.
+                Fill in the details below. The message will be delivered straight to my inbox without leaving this page.
               </p>
 
-              {/* Status Alert */}
+              {/* In-Page Status Alert */}
               {status.type && (
                 <div
                   className={`p-4 rounded-2xl mb-6 flex items-start gap-3 text-sm animate-in fade-in duration-200 ${
@@ -178,23 +199,11 @@ export function Contact() {
                   }`}
                 >
                   {status.type === "success" ? (
-                    <CheckCircle className="w-5 h-5 shrink-0 mt-0.5 text-emerald-500" />
+                    <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5 text-emerald-500" />
                   ) : (
                     <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 text-red-500" />
                   )}
-                  <div className="min-w-0 flex-1">
-                    <p>{status.message}</p>
-                    {gmailDraftUrl && (
-                      <a
-                        href={gmailDraftUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-2 inline-block font-semibold underline underline-offset-2"
-                      >
-                        Open Gmail draft
-                      </a>
-                    )}
-                  </div>
+                  <p className="leading-relaxed">{status.message}</p>
                 </div>
               )}
 
@@ -305,10 +314,20 @@ export function Contact() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                  disabled={loading}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
-                  <Send className="w-4 h-4" />
-                  Send Message
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Sending Message...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      Send Message
+                    </>
+                  )}
                 </button>
               </form>
             </div>

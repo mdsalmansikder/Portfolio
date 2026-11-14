@@ -68,14 +68,14 @@ body {
 .bg-grid-pattern {
   background-size: 36px 36px;
   background-image: 
-    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
 }
 
 .dark .bg-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(30, 58, 110, 0.18) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 58, 110, 0.18) 1px, transparent 1px);
+    linear-gradient(to right, rgba(56, 189, 248, 0.11) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.11) 1px, transparent 1px);
 }
 
 /* Gradient text */
@@ -96,3 +96,272 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Animated Running Border Beam (Laser Pin Runner) */
+@keyframes border-beam {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-border-beam {
+  animation: border-beam 3.5s linear infinite;
+}
+
+.animate-border-beam-fast {
+  animation: border-beam 2.2s linear infinite;
+}
+
+/* Animated Cyber Grid Drift (Moving background pixel lines) */
+@keyframes grid-drift {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 72px 72px;
+  }
+}
+
+.animate-grid-drift {
+  animation: grid-drift 22s linear infinite;
+}
+
+/* Horizontal & Vertical Light Rays sweeping over Grid Lines */
+@keyframes grid-scan-h {
+  0% {
+    top: -5%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.85;
+  }
+  100% {
+    top: 105%;
+    opacity: 0;
+  }
+}
+
+.animate-grid-scan-h {
+  animation: grid-scan-h 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes grid-scan-v {
+  0% {
+    left: -5%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.75;
+  }
+  80% {
+    opacity: 0.75;
+  }
+  100% {
+    left: 105%;
+    opacity: 0;
+  }
+}
+
+.animate-grid-scan-v {
+  animation: grid-scan-v 13s cubic-bezier(0.4, 0, 0.2, 1) infinite 3s;
+}
+
+/* Twinkling Pixel Block / Intersection Pulse */
+@keyframes pixel-twinkle {
+  0%, 100% {
+    opacity: 0.05;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pixel-twinkle {
+  animation: pixel-twinkle 3.8s ease-in-out infinite;
+}
+
+.animate-pixel-twinkle-fast {
+  animation: pixel-twinkle 2.4s ease-in-out infinite;
+}
+
+.animate-pixel-twinkle-slow {
+  animation: pixel-twinkle 5.5s ease-in-out infinite;
+}
+
+/* Aurora Sweeps */
+@keyframes aurora-sweep {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(45px, -25px) scale(1.12);
+    opacity: 0.65;
+  }
+}
+
+.animate-aurora-sweep {
+  animation: aurora-sweep 11s ease-in-out infinite;
+}
+
+/* ============================================================
+   Shooting Fire / Laser Fire Streaks (Fire Shots across Background)
+   ============================================================ */
+@keyframes fire-shot-1 {
+  0% {
+    transform: translate3d(-100px, -100px, 0) rotate(42deg);
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  24% {
+    transform: translate3d(1500px, 1400px, 0) rotate(42deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(1500px, 1400px, 0) rotate(42deg);
+    opacity: 0;
+  }
+}
+
+.animate-fire-shot-1 {
+  animation: fire-shot-1 7s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes fire-shot-2 {
+  0% {
+    transform: translate3d(-80px, 160px, 0) rotate(35deg);
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  22% {
+    transform: translate3d(1600px, 1150px, 0) rotate(35deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(1600px, 1150px, 0) rotate(35deg);
+    opacity: 0;
+  }
+}
+
+.animate-fire-shot-2 {
+  animation: fire-shot-2 9.5s cubic-bezier(0.25, 1, 0.5, 1) infinite 3.5s;
+}
+
+@keyframes fire-shot-3 {
+  0% {
+    transform: translate3d(250px, -120px, 0) rotate(48deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.95;
+  }
+  25% {
+    transform: translate3d(1650px, 1550px, 0) rotate(48deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(1650px, 1550px, 0) rotate(48deg);
+    opacity: 0;
+  }
+}
+
+.animate-fire-shot-3 {
+  animation: fire-shot-3 11s cubic-bezier(0.25, 1, 0.5, 1) infinite 6s;
+}
+
+/* Rising Fire Embers / Floating Cyber Sparks */
+@keyframes ember-rise-1 {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.95;
+  }
+  65% {
+    opacity: 0.6;
+  }
+  90%, 100% {
+    transform: translateY(-400px) translateX(30px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.animate-ember-1 {
+  animation: ember-rise-1 6.5s ease-out infinite;
+}
+
+@keyframes ember-rise-2 {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.5);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.55;
+  }
+  90%, 100% {
+    transform: translateY(-440px) translateX(-35px) scale(1.15);
+    opacity: 0;
+  }
+}
+
+.animate-ember-2 {
+  animation: ember-rise-2 8s ease-out infinite 2s;
+}
+
+@keyframes ember-rise-3 {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.4);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 0.5;
+  }
+  90%, 100% {
+    transform: translateY(-360px) translateX(20px) scale(1);
+    opacity: 0;
+  }
+}
+
+.animate-ember-3 {
+  animation: ember-rise-3 5.5s ease-out infinite 1s;
+}
+
+/* Central Energy Shockwave Flare Burst */
+@keyframes shockwave-flare {
+  0% {
+    transform: scale(0.3);
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.animate-shockwave-flare {
+  animation: shockwave-flare 6.5s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+

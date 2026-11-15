@@ -6,9 +6,9 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import {
   Menu,
   X,
-  Code2,
   Send,
 } from "lucide-react";
+import { RiyadDevLogo } from "@/components/icons";
 
 const navLinks = [
   { name: "Home", href: "/#home" },
@@ -46,8 +46,8 @@ export function Navbar() {
             href="/"
             className="group flex items-center gap-2.5 font-bold tracking-tight text-xl transition-transform hover:scale-[1.02]"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 via-blue-500 to-cyan-400 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:shadow-blue-500/40 transition-all">
-              <Code2 className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0c1427] via-[#0f1a30] to-[#060b18] dark:from-slate-900 dark:via-slate-800/90 dark:to-slate-900 flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 border border-blue-500/25 group-hover:border-cyan-400/40 transition-all duration-300">
+              <RiyadDevLogo className="w-6 h-6" />
             </div>
             <span className="font-mono text-slate-900 dark:text-white">
               RIYAD<span className="text-blue-500">.DEV</span>

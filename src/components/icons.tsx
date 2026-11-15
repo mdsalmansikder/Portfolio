@@ -1,5 +1,70 @@
 import React from "react";
 
+/** Premium RIYAD.DEV Brand Logo — Hexagonal tech emblem with "R" initial */
+export function RiyadDevLogo({ className = "w-6 h-6" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 36 36" fill="none" className={className} aria-label="RIYAD.DEV Logo">
+      {/* Hexagon outer frame */}
+      <path
+        d="M18 2L32.5 10.5V25.5L18 34L3.5 25.5V10.5L18 2Z"
+        stroke="url(#hex-stroke)"
+        strokeWidth="1.5"
+        fill="none"
+        opacity="0.6"
+      />
+      {/* Inner filled hexagon */}
+      <path
+        d="M18 5.5L30 12.5V23.5L18 30.5L6 23.5V12.5L18 5.5Z"
+        fill="url(#hex-fill)"
+        opacity="0.15"
+      />
+      {/* Forward slash / — developer symbol */}
+      <path
+        d="M14.5 25L21.5 11"
+        stroke="url(#slash-grad)"
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity="0.45"
+      />
+      {/* Bold "R" monogram centered */}
+      <path
+        d="M12.5 25V11.5H19.5C20.6 11.5 21.65 11.94 22.43 12.72C23.2 13.5 23.65 14.55 23.65 15.65C23.65 16.75 23.2 17.8 22.43 18.58C21.65 19.35 20.6 19.8 19.5 19.8H17L23.5 25"
+        stroke="url(#r-gradient)"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      {/* Glowing accent dot */}
+      <circle cx="26" cy="25.5" r="1.8" fill="url(#dot-gradient)" />
+      <circle cx="26" cy="25.5" r="3" fill="url(#dot-gradient)" opacity="0.2" />
+      <defs>
+        <linearGradient id="hex-stroke" x1="3.5" y1="2" x2="32.5" y2="34" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#38bdf8" />
+          <stop offset="1" stopColor="#6366f1" />
+        </linearGradient>
+        <linearGradient id="hex-fill" x1="6" y1="5.5" x2="30" y2="30.5" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#22d3ee" />
+          <stop offset="1" stopColor="#3b82f6" />
+        </linearGradient>
+        <linearGradient id="slash-grad" x1="14.5" y1="25" x2="21.5" y2="11" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#94a3b8" />
+          <stop offset="1" stopColor="#e2e8f0" />
+        </linearGradient>
+        <linearGradient id="r-gradient" x1="12.5" y1="11" x2="23.5" y2="25" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#ffffff" />
+          <stop offset="0.6" stopColor="#93c5fd" />
+          <stop offset="1" stopColor="#38bdf8" />
+        </linearGradient>
+        <linearGradient id="dot-gradient" x1="24" y1="23.5" x2="28" y2="27.5" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#22d3ee" />
+          <stop offset="1" stopColor="#06b6d4" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
 export function HtmlIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className}>

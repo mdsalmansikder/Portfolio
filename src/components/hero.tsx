@@ -35,12 +35,6 @@ export function Hero() {
           }}
         />
 
-        {/* Horizontal Laser Scanning Line (Sweeps top to bottom across grid) */}
-        <div className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 dark:via-cyan-300 to-transparent blur-[1px] animate-grid-scan-h opacity-75 shadow-[0_0_12px_#22d3ee]" />
-
-        {/* Vertical Laser Scanning Line (Sweeps left to right across grid) */}
-        <div className="absolute top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-blue-500 dark:via-blue-400 to-transparent blur-[1px] animate-grid-scan-v opacity-65 shadow-[0_0_12px_#3b82f6]" />
-
         {/* Floating Twinkling Pixel Blocks on the Grid */}
         <div className="absolute top-[14%] left-[10%] w-9 h-9 border border-cyan-400/30 bg-cyan-500/10 dark:bg-cyan-400/15 backdrop-blur-xs rounded-sm animate-pixel-twinkle shadow-[0_0_10px_rgba(34,211,238,0.25)]" />
         <div className="absolute top-[22%] right-[16%] w-9 h-9 border border-blue-500/35 bg-blue-600/10 dark:bg-blue-500/15 backdrop-blur-xs rounded-sm animate-pixel-twinkle-fast shadow-[0_0_10px_rgba(59,130,246,0.25)]" />
@@ -74,11 +68,6 @@ export function Hero() {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] h-[540px] bg-gradient-to-tr from-blue-600/25 via-cyan-500/20 to-transparent rounded-full blur-3xl animate-aurora-sweep" />
         <div className="absolute top-1/2 right-10 w-[380px] h-[380px] bg-blue-500/15 rounded-full blur-3xl animate-aurora-sweep [animation-delay:4s]" />
         <div className="absolute bottom-10 left-10 w-[340px] h-[340px] bg-cyan-500/15 rounded-full blur-3xl animate-aurora-sweep [animation-delay:7s]" />
-
-        {/* Dynamic Shooting Fire Streaks (Laser Fire Shots) */}
-        <div className="absolute top-0 left-0 w-52 sm:w-80 h-[2.5px] bg-gradient-to-r from-transparent via-cyan-400 to-white shadow-[0_0_18px_#22d3ee,0_0_30px_#0066ff] animate-fire-shot-1 pointer-events-none rounded-full" />
-        <div className="absolute top-1/4 left-0 w-64 sm:w-96 h-[3px] bg-gradient-to-r from-transparent via-blue-400 to-cyan-200 shadow-[0_0_20px_#38bdf8,0_0_35px_#0055ff] animate-fire-shot-2 pointer-events-none rounded-full" />
-        <div className="absolute top-12 left-1/4 w-48 sm:w-72 h-[2.5px] bg-gradient-to-r from-transparent via-cyan-300 to-white shadow-[0_0_16px_#67e8f9,0_0_28px_#2563eb] animate-fire-shot-3 pointer-events-none rounded-full" />
 
         {/* Central Energy Shockwave Flare Burst */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full border border-cyan-400/30 bg-gradient-to-r from-blue-600/10 via-cyan-400/10 to-transparent animate-shockwave-flare pointer-events-none" />
